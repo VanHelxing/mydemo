@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.van.security.mapper.SysPermissionMapper">
+    <resultMap id="result" type="com.van.security.domain.SysPermission">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="description" property="description"/>
+        <result column="url" property="url"/>
+        <result column="pid" property="pid"/>
+    </resultMap>
+
+    <select id="findByParams" parameterType="map" resultMap="result">
+        select <include refid="select_field"/>
+        from sys_permission p
+        <where>
+            ${sqlwhere}
+        </where>
+    </select>
+
+    <sql id="select_field">
+        p.id,
+        p.`name`,
+        p.description,
+        p.url,
+        p.pid
+    </sql>
+</mapper>
