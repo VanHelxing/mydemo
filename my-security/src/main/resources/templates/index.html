@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <link rel="stylesheet" th:href="@{css/bootstrap.min.css}">
+    <script th:src="@{js/jquery-3.3.1.min.js}"></script>
+</head>
+<body>
+    <div>
+        <ul class="list-unstyled">
+            <li><a th:href="@{user/findUsers}">用户管理</a></li>
+            <li><a th:href="@{product/product}">商品管理</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>

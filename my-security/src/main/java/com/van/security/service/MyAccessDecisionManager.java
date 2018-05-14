@@ -24,7 +24,7 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
     //configAttributes 为MyInvocationSecurityMetadataSource的getAttributes(Object object)这个方法返回的结果，此方法是为了判定用户请求的url 是否在权限表中，如果在权限表中，则返回给 decide 方法，用来判定用户是否有此权限。如果不在权限表中则放行
     @Override
     public void decide(Authentication authentication, Object object, Collection<ConfigAttribute> configAttributes) throws AccessDeniedException, InsufficientAuthenticationException {
-        log.info("进入了 MyAccessDecisionManagerImpl 里的decide方法!");
+        log.info("进入了 MyAccessDecisionManager 里的decide方法!");
         if (configAttributes == null ||configAttributes.size() == 0){
             return;
         }
@@ -32,13 +32,16 @@ public class MyAccessDecisionManager implements AccessDecisionManager {
         String needRole;
         for(Iterator<ConfigAttribute> iter = configAttributes.iterator(); iter.hasNext();){
             c = iter.next();
-            needRole = c.getAttribute();
+            needRole = c.getAttribute();  //permission.getName()
+            log.info("decide方法中, 需要的角色为 "+ needRole +"");
             for(GrantedAuthority authority : authentication.getAuthorities()){
                 if(needRole.trim().equals(authority.getAuthority())){
+                    log.info("decide方法中找到需要的角色！");
                     return;
                 }
             }
         }
+        log.info("decide方法中找到需要的角色！");
 
         throw  new AccessDeniedException("您无权限访问此资源!");
     }

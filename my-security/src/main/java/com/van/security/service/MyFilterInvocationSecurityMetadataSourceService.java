@@ -39,7 +39,7 @@ public class MyFilterInvocationSecurityMetadataSourceService implements FilterIn
             cfg = new SecurityConfig(permission.getName());
             //此处只添加了权限需要的角色
             array.add(cfg);
-            //用权限的url作为key, ConfigAttribute集合作废value
+            //用权限的url作为key, ConfigAttribute集合作为value
             map.put(permission.getUrl(), array);
         }
     }
@@ -48,7 +48,7 @@ public class MyFilterInvocationSecurityMetadataSourceService implements FilterIn
     //此方法是为了判定用户请求的url 是否在权限表中，如果在权限表中，则返回给 decide 方法，用来判定用户是否有此权限。如果不在权限表中则放行。
     @Override
     public Collection<ConfigAttribute> getAttributes(Object object) throws IllegalArgumentException {
-        log.info("在在MyInvocationSecurityMetadataSourceServiceImpl加载了数据库中所有的权限 getAttributes方法里寻找用户访问路径需要的权限角色!");
+        log.info("在MyInvocationSecurityMetadataSourceService 的getAttributes方法里寻找用户访问路径需要的权限角色!");
         //加载权限
         if(map == null){
             loadResourceDefine();
@@ -61,6 +61,11 @@ public class MyFilterInvocationSecurityMetadataSourceService implements FilterIn
             resUrl = iter.next();
             matcher = new AntPathRequestMatcher(resUrl);
             if(matcher.matches(request)){
+                Collection<ConfigAttribute> attributes = map.get(resUrl);
+                for (ConfigAttribute config : attributes){
+                    log.info("在MyInvocationSecurityMetadataSourceService中, 查找到访问该路径需要角色【"+ config.getAttribute() +"】");
+                }
+
                 return map.get(resUrl);
             }
         }
