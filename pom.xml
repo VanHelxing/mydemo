@@ -8,6 +8,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 	<modules>
 		<module>my-security</module>
+		<module>my-common</module>
 	</modules>
 	<packaging>pom</packaging>
 
@@ -56,8 +57,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
+		<!-- Spring Boot log4j依赖 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j</artifactId>
+		</dependency>
 
-    </dependencies>
+	</dependencies>
 
 
 	<build>

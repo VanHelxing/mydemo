@@ -42,12 +42,4 @@ public class UserController {
         return "index";
     }
 
-    /**
-     * 登录入口
-     * @return
-     */
-    @RequestMapping("/login")
-    public String login(){
-        return "login";
-    }
 }
