@@ -23,9 +23,12 @@ public class IDGenerator extends HibernateDaoSupport implements IdentifierGenera
             throw new IllegalArgumentException("实体类必须继承BaseEntity！");
         }
 
+        // 新增
         if (((BaseEntity) object).getId() == null){
             return IDUtil.uuid();
-        }else{
+        }
+        // 更新
+        else{
             return ((BaseEntity) object).getId();
         }
 

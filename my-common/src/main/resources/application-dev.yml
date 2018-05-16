@@ -19,7 +19,7 @@ spring:
   #jpa
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
   #thymeleaf
   thymeleaf:
@@ -40,7 +40,8 @@ spring:
 #日志
 debug: true
 logging:
-  level: debug
+  level:
+    com.van.common: debug
 
 
 

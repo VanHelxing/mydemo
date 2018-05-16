@@ -11,6 +11,7 @@ import java.util.Date;
  * @version : 1.0
  */
 @MappedSuperclass
+@EntityListeners({BaseEntityListening.class})  //监听回调
 public class BaseEntity implements Serializable {
 
 
@@ -45,12 +46,6 @@ public class BaseEntity implements Serializable {
     private String status;
 
 
-    /**
-     * Get id string.
-     *
-     * @return the string
-     * @author : yangjunqing / 2018-05-15
-     */
     @Id
     @GenericGenerator(name = "costom-uuid", strategy = "com.van.common.domain.IDGenerator")
     @GeneratedValue(generator = "costom-uuid")
@@ -58,119 +53,53 @@ public class BaseEntity implements Serializable {
         return id;
     }
 
-    /**
-     * Sets id.
-     *
-     * @param id the id
-     * @author : yangjunqing / 2018-05-15
-     */
     public void setId(String id) {
         this.id = id;
     }
 
-    /**
-     * Get create id string.
-     *
-     * @return the string
-     * @author : yangjunqing / 2018-05-15
-     */
     @Column
     public String getCreateId() {
         return createId;
     }
 
-    /**
-     * Sets create id.
-     *
-     * @param createId the create id
-     * @author : yangjunqing / 2018-05-15
-     */
     public void setCreateId(String createId) {
         this.createId = createId;
     }
 
-    /**
-     * Get create date date.
-     *
-     * @return the date
-     * @author : yangjunqing / 2018-05-15
-     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false, updatable = false)
     public Date getCreateDate() {
         return createDate;
     }
 
-    /**
-     * Sets create date.
-     *
-     * @param createDate the create date
-     * @author : yangjunqing / 2018-05-15
-     */
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
 
-    /**
-     * Get last modify id string.
-     *
-     * @return the string
-     * @author : yangjunqing / 2018-05-15
-     */
     @Column
     public String getLastModifyId() {
         return lastModifyId;
     }
 
-    /**
-     * Sets last modify id.
-     *
-     * @param lastModifyId the last modify id
-     * @author : yangjunqing / 2018-05-15
-     */
     public void setLastModifyId(String lastModifyId) {
         this.lastModifyId = lastModifyId;
     }
 
-    /**
-     * Get last modify date date.
-     *
-     * @return the date
-     * @author : yangjunqing / 2018-05-15
-     */
     @Temporal(TemporalType.TIMESTAMP)
     @Column(nullable = false)
     public Date getLastModifyDate() {
         return lastModifyDate;
     }
 
-    /**
-     * Sets last modify date.
-     *
-     * @param lastModifyDate the last modify date
-     * @author : yangjunqing / 2018-05-15
-     */
     public void setLastModifyDate(Date lastModifyDate) {
         this.lastModifyDate = lastModifyDate;
     }
 
-    /**
-     * Get status string.
-     *
-     * @return the string
-     * @author : yangjunqing / 2018-05-15
-     */
     @Column
     public String getStatus() {
         return status;
     }
-
-    /**
-     * Sets status.
-     *
-     * @param status the status
-     * @author : yangjunqing / 2018-05-15
-     */
+    
     public void setStatus(String status) {
         this.status = status;
     }
