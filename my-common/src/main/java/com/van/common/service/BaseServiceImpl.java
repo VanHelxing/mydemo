@@ -4,6 +4,7 @@ import com.van.common.dao.BaseDao;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -15,7 +16,7 @@ import java.util.List;
  * @author : yangjunqing / yangjunqing@zhimadi.cn
  * @version : 1.0
  */
-@Service
+@NoRepositoryBean
 public class BaseServiceImpl <T> implements BaseService<T> {
 
     @Resource
