@@ -46,11 +46,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .failureUrl("/login?error")
+                .loginPage("/userLogin")
+                .failureUrl("/userLogin?error")
                 .permitAll() //登录页面用户任意访问
                 .and()
-                .logout().permitAll(); //注销行为任意访问
+                .logout().permitAll()
+                .and()
+                .csrf().disable();
+
+        http.exceptionHandling().accessDeniedPage("/accessDenied");
+
         http.addFilterBefore(myFilterSecurityInterceptor, FilterSecurityInterceptor.class);
     }
+
+
 }

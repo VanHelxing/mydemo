@@ -1,6 +1,7 @@
 package com.van.security.domain;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "sys_permission")
@@ -15,6 +16,8 @@ public class SysPermission {
     private  String url;
 
     private int pid;
+
+    private List<SysRole> roles;
 
     public SysPermission() {
     }
@@ -65,14 +68,13 @@ public class SysPermission {
         this.pid = pid;
     }
 
-    @Override
-    public String toString() {
-        return "SysPermission{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", url='" + url + '\'' +
-                ", pid=" + pid +
-                '}';
+
+    @Transient
+    public List<SysRole> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<SysRole> roles) {
+        this.roles = roles;
     }
 }

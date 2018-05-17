@@ -11,7 +11,7 @@ public class SysRole {
 
     private String name;
 
-    private List<SysPermission> permissions;
+    private String description;
 
     public SysRole() {
     }
@@ -35,13 +35,13 @@ public class SysRole {
         this.name = name;
     }
 
-    @Transient
-    public List<SysPermission> getPermissions() {
-        return permissions;
+    @Column(name = "description")
+    public String getDescription() {
+        return description;
     }
 
-    public void setPermissions(List<SysPermission> permissions) {
-        this.permissions = permissions;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override
@@ -49,7 +49,7 @@ public class SysRole {
         return "SysRole{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", permissions=" + permissions +
+                ", description='" + description + '\'' +
                 '}';
     }
 }

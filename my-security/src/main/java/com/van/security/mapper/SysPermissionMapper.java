@@ -9,5 +9,7 @@ import java.util.Map;
 @Repository
 public interface SysPermissionMapper {
 
+    public List<SysPermission> findAll();
+
     public List<SysPermission> findByParams(Map<String, Object> params);
 }

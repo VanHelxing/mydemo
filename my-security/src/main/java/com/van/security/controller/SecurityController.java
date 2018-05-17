@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-public class UserController {
+public class SecurityController {
 
     @Resource
     private SysUserMapper sysUserMapper;
@@ -33,13 +33,19 @@ public class UserController {
     }
 
 
-    /**
-     * 开始页面
-     * @return
-     */
     @RequestMapping("/")
     public String index(){
         return "index";
+    }
+
+    @RequestMapping("/userLogin")
+    public String userLogin(){
+        return "login";
+    }
+
+    @RequestMapping("/accessDenied")
+    public String accessDenied(){
+        return "accessDenied";
     }
 
 }

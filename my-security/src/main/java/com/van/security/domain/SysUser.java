@@ -13,6 +13,10 @@ public class SysUser {
 
     private String password;
 
+    private String orgId;
+
+    private String depId;
+
     private List<SysRole> roles;
 
     public SysUser() {
@@ -46,6 +50,24 @@ public class SysUser {
         this.password = password;
     }
 
+    @Column(name = "org_id")
+    public String getOrgId() {
+        return orgId;
+    }
+
+    public void setOrgId(String orgId) {
+        this.orgId = orgId;
+    }
+
+    @Column(name = "dep_id ")
+    public String getDepId() {
+        return depId;
+    }
+
+    public void setDepId(String depId) {
+        this.depId = depId;
+    }
+
     @Transient
     public List<SysRole> getRoles() {
         return roles;
@@ -61,6 +83,8 @@ public class SysUser {
                 "id=" + id +
                 ", userName='" + userName + '\'' +
                 ", password='" + password + '\'' +
+                ", orgId='" + orgId + '\'' +
+                ", depId='" + depId + '\'' +
                 ", roles=" + roles +
                 '}';
     }

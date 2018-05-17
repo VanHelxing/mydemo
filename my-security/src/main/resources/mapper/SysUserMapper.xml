@@ -7,16 +7,12 @@
         <result column="id" property="id"/>
         <result column="username" property="userName"/>
         <result column="password" property="password"/>
+        <result column="org_id" property="orgId"/>
+        <result column="dep_id" property="depId"/>
         <collection property="roles" ofType="com.van.security.domain.SysRole">
             <result column="role_id" property="id"/>
             <result column="role_name" property="name"/>
-            <collection property="permissions" ofType="com.van.security.domain.SysPermission">
-                <result column="per_id" property="id"/>
-                <result column="per_name" property="name"/>
-                <result column="description" property="description"/>
-                <result column="per_url" property="url"/>
-                <result column="pid" property="pid"/>
-            </collection>
+            <result column="r_description" property="description"/>
         </collection>
     </resultMap>
 
@@ -25,8 +21,6 @@
           from sys_user u
             inner join sys_role_user ru on u.id = ru.sys_user_id
             inner join sys_role r on r.id = ru.sys_role_id
-            inner join sys_permission_role pr on pr.role_id = r.id
-            inner join sys_permission p on p.id = pr.permission_id
           where u.username = #{userName}
     </select>
 
@@ -50,8 +44,6 @@
         from sys_user u
             inner join sys_role_user ru on u.id = ru.sys_user_id
             inner join sys_role r on r.id = ru.sys_role_id
-            inner join sys_permission_role pr on pr.role_id = r.id
-            inner join sys_permission p on p.id = pr.permission_id
         <where>
             ${sqlwhere}
         </where>
@@ -61,12 +53,10 @@
         u.id,
         u.username,
         u.`password`,
+        u.org_id,
+        u.dep_id,
         r.id as role_id,
         r.`name` as role_name,
-        p.id as per_id,
-        p.`name` as per_name,
-        p.url as per_url,
-        p.description,
-        p.pid
+        r.description as r_description
     </sql>
 </mapper>

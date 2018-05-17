@@ -9,11 +9,25 @@
         <result column="description" property="description"/>
         <result column="url" property="url"/>
         <result column="pid" property="pid"/>
+        <collection property="roles" ofType="com.van.security.domain.SysRole">
+            <result column="role_id" property="id"/>
+            <result column="role_name" property="name"/>
+            <result column="r_description" property="description"/>
+        </collection>
     </resultMap>
+
+    <select id="findAll" resultMap="result">
+        select <include refid="select_field"/>
+        from sys_permission p
+            inner join sys_permission_role pr on pr.permission_id = p.id
+            inner join sys_role r on pr.role_id = r.id
+    </select>
 
     <select id="findByParams" parameterType="map" resultMap="result">
         select <include refid="select_field"/>
         from sys_permission p
+            inner join sys_permission_role pr on pr.permission_id = p.id
+            inner join sys_role r on pr.role_id = r.id
         <where>
             ${sqlwhere}
         </where>
@@ -24,6 +38,9 @@
         p.`name`,
         p.description,
         p.url,
-        p.pid
+        p.pid,
+        r.id as role_id,
+        r.`name` as role_name,
+        r.description as r_description
     </sql>
 </mapper>

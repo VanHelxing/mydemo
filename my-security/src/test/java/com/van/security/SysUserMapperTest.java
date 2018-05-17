@@ -21,6 +21,5 @@ public class SysUserMapperTest {
         SysUser user = sysUserMapper.findByUserName("admin");
         System.out.println(user.toString());
         System.out.println(user.getRoles().get(0).getName());
-        System.out.println(user.getRoles().get(0).getPermissions().get(0).getUrl());
     }
 }

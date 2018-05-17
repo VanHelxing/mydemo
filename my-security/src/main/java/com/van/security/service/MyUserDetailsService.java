@@ -1,6 +1,6 @@
 package com.van.security.service;
 
-import com.van.security.domain.SysPermission;
+import com.van.security.domain.SysRole;
 import com.van.security.domain.SysUser;
 import com.van.security.mapper.SysUserMapper;
 import org.apache.logging.log4j.LogManager;
@@ -27,23 +27,23 @@ public class MyUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        log.info("在MyUserDetailsService 中通过用户名查询权限信息，用户名为: "+ userName +"");
+        log.debug("通过提交的用户名查询角色信息，用户名为: "+ userName +"");
         SysUser user = sysUserMapper.findByUserName(userName);
         if(user != null){
-            List<SysPermission> permissions = sysUserMapper.findPermissionByUserName(userName);
+            List<SysRole> roles = user.getRoles();
             List<GrantedAuthority> authorities = new ArrayList<>();
-            if (permissions != null){
-                for(SysPermission permission : permissions){
-                    GrantedAuthority authority = new SimpleGrantedAuthority(permission.getName());
-                    //将用户的权限名称加入List<SysPermission> 中
+            if (roles != null){
+                for(SysRole role : roles){
+                    GrantedAuthority authority = new SimpleGrantedAuthority(role.getName());
+                    //将用户的角色名称加入authorities中
                     authorities.add(authority);
-                    log.info("在MyUserDetailsService中将用户拥有的权限名称加入GrantedAuthority中。" + permission.toString());
+                    log.debug("将用户的角色加入GrantedAuthority中。" + role.getName());
                 }
             }
             return new User(user.getUserName(), user.getPassword(), authorities);
         }
         else {
-            throw new UsernameNotFoundException("为查询到用户名为: "+ userName +" 的任何信息！");
+            throw new UsernameNotFoundException("未查询到用户名为: "+ userName +" 的任何信息！");
         }
     }
 }

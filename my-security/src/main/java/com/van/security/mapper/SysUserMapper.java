@@ -19,7 +19,7 @@ public interface SysUserMapper {
     public SysUser findByUserName(@Param("userName")String userName);
 
     /**
-     * 查询用户所拥有的权限
+     * 查询用户所拥有的资源
      * @param userName
      * @return
      */

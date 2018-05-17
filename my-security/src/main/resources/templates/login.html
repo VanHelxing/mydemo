@@ -8,8 +8,8 @@
 </head>
 <body>
     <div class="container">
-        <p th:if="${param.error}" class="bg-danger">有错误请重试！</p>
-        <form name="form" th:action="@{/login}" action="/login" method="post">
+        <p th:if="${param.error}" class="bg-danger">用户名或密码错误！请重新尝试！</p>
+        <form name="form" th:action="@{userLogin}" action="/userLogin" method="post">
             <div class="form-group">
                 <label for="username">账号</label>
                 <input id="username" type="text" class="form-control" name="username" value="" placeholder="请输入账号...">
