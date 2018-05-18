@@ -212,4 +212,18 @@ public class LoginInfo {
     public void setSessionId(String sessionId) {
         this.sessionId = sessionId;
     }
+
+    @Override
+    public String toString() {
+        return "LoginInfo{" +
+                "orgId='" + orgId + '\'' +
+                ", orgName='" + orgName + '\'' +
+                ", depId='" + depId + '\'' +
+                ", depName='" + depName + '\'' +
+                ", userId='" + userId + '\'' +
+                ", userName='" + userName + '\'' +
+                ", loginIP='" + loginIP + '\'' +
+                ", sessionId='" + sessionId + '\'' +
+                '}';
+    }
 }

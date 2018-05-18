@@ -6,6 +6,10 @@ package com.van.common.core;
  */
 public enum OperationMethod {
     /**
+     * Find operation method.
+     */
+    find,
+    /**
      * Create operation method.
      */
     create,

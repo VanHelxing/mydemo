@@ -57,7 +57,7 @@ public class BaseEntity implements Serializable {
         this.id = id;
     }
 
-    @Column
+    @Column(updatable = false)
     public String getCreateId() {
         return createId;
     }
